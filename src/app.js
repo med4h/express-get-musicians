@@ -20,4 +20,18 @@ app.get('/musicians/:id', async (req, res) => {
     res.json(musiciansId);
 })
 
+app.post("/musicians", async (req, res) => {
+    const musician = await Musician.create(req.body);
+    res.json(musician);
+})
+
+app.put('/musicians/:id', async (req, res) => {
+    const updatedMusic = await Musician.update(req.body, {where: { id: req.params.id}});
+    res.json(updatedMusic);
+})
+
+app.delete("/musicians/:id", async (req, res) => {
+    const deleteMusic = await Musician.destroy({where: {id: req.params.id}});
+    res.json(deleteMusic);
+})
 module.exports = app;
