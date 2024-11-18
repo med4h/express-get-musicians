@@ -20,4 +20,10 @@ describe('./musicians endpoint', () => {
         const response = await request(app).get('/musicians/1');
         expect(response.body.name).toBe('Mick Jagger');
     })
+    test('should return error array', async () => {
+        const repsonse = await request(app)
+        .post('/musicians')
+        .send({name: "", instrument: ""});
+        expect(response.body.errors.length).toBeGreaterThan(0);
+    })
 })
